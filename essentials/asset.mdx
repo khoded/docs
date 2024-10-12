@@ -1,0 +1,79 @@
+---
+title: 'Assets'
+description: 'Manage digital assets in your projects'
+---
+
+Assets are digital representations of value in your projects, such as loyalty points or virtual currencies.
+
+## Properties
+
+<ResponseField name="id" type="string" required>
+  Unique identifier for the asset
+</ResponseField>
+
+<ResponseField name="name" type="string" required>
+  Name of the asset
+</ResponseField>
+
+<ResponseField name="symbol" type="string" required>
+  Symbol or ticker for the asset
+</ResponseField>
+
+<ResponseField name="fractions" type="number" required>
+  Number of decimal places for the asset
+</ResponseField>
+
+<ResponseField name="created_at" type="string" required>
+  Timestamp of asset creation
+</ResponseField>
+
+<ResponseField name="updated_at" type="string" required>
+  Timestamp of last asset update
+</ResponseField>
+
+<ResponseField name="owner" type="string" required>
+  Owner of the asset
+</ResponseField>
+
+## Endpoints
+
+### List Assets
+
+
+GET /assets
+
+Retrieve a list of assets for a specific project.
+
+### Create Asset
+
+```
+POST /assets
+```
+
+Create a new asset within a project.
+
+### Get Asset Details
+
+```
+GET /assets/{id}
+```
+
+Get details of a specific asset.
+
+### Update Asset
+
+```
+PUT /assets/{id}
+```
+
+Rename an existing asset.
+
+### Delete Asset
+
+```
+DELETE /assets/{id}
+```
+
+Delete an asset.
+
+For detailed information on request/response formats and examples, please refer to the [API Reference](/api-reference/assets).

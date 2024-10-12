@@ -1,0 +1,80 @@
+---
+title: 'Projects'
+description: 'Organize your digital economy'
+---
+
+Projects are containers for assets and wallets, allowing you to organize your digital economy.
+
+## Properties
+
+<ResponseField name="id" type="number" required>
+  Unique identifier for the project
+</ResponseField>
+
+<ResponseField name="name" type="string" required>
+  Name of the project
+</ResponseField>
+
+<ResponseField name="owner" type="string" required>
+  Owner of the project
+</ResponseField>
+
+<ResponseField name="asset_id" type="string" required>
+  ID of the associated asset
+</ResponseField>
+
+<ResponseField name="supportExchangeRate" type="boolean" required>
+  Whether the project supports exchange rates
+</ResponseField>
+
+<ResponseField name="exchangeRate" type="number" required>
+  Exchange rate for the project's asset
+</ResponseField>
+
+<ResponseField name="type" type="string" required>
+  Type of the project (e.g., "loyalty" or "virtual")
+</ResponseField>
+
+<ResponseField name="metadata" type="object" required>
+  Additional metadata for the project
+</ResponseField>
+
+<ResponseField name="created_at" type="string" required>
+  Timestamp of project creation
+</ResponseField>
+
+<ResponseField name="updated_at" type="string" required>
+  Timestamp of last project update
+</ResponseField>
+
+## Endpoints
+
+### List Projects
+
+Retrieve a list of all projects.
+
+### Create Project
+
+```
+POST /projects
+```
+
+Create a new project.
+
+### Get Project Details
+
+```
+GET /projects/{id}
+```
+
+Get details of a specific project.
+
+### Update Project
+
+```
+PUT /projects/{id}
+```
+
+Update an existing project.
+
+For detailed information on request/response formats and examples, please refer to the [API Reference](/api-reference/projects).

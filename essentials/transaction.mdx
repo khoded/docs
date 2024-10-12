@@ -1,0 +1,62 @@
+---
+title: 'Transactions'
+description: 'Process asset transfers between wallets'
+---
+
+Transactions represent movements of assets between wallets in your projects.
+
+## Properties
+
+<ResponseField name="amount" type="number" required>
+  Amount of the asset transferred
+</ResponseField>
+
+<ResponseField name="date" type="string" required>
+  Timestamp of the transaction
+</ResponseField>
+
+<ResponseField name="currency" type="string" required>
+  Currency or asset symbol used in the transaction
+</ResponseField>
+
+<ResponseField name="balance" type="number" required>
+  Resulting balance after the transaction
+</ResponseField>
+
+<ResponseField name="from" type="string" required>
+  Source wallet address
+</ResponseField>
+
+<ResponseField name="id" type="string" required>
+  Unique identifier for the transaction
+</ResponseField>
+
+<ResponseField name="to" type="string" required>
+  Destination wallet address
+</ResponseField>
+
+## Endpoints
+
+### List Transactions
+
+
+GET /transactions
+
+Retrieve a list of transactions for a specific wallet.
+
+### Create Transaction
+
+
+POST /transactions
+
+Create a new transaction between two wallets.
+
+### Seed Transaction
+
+```
+POST /transactions/seed
+```
+
+Seed a new transaction to a system wallet.
+
+For detailed information on request/response formats and examples, please refer to the [API Reference](/api-reference/transactions).

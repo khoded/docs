@@ -1,0 +1,85 @@
+---
+title: 'Wallets'
+description: 'Manage customer and system wallets'
+---
+
+Wallets are stores of assets that can be owned by customers or the system.
+
+## Properties
+
+<ResponseField name="id" type="string" required>
+  Unique identifier for the wallet
+</ResponseField>
+
+<ResponseField name="type" type="string" required>
+  Type of the wallet (e.g., "customer" or "system")
+</ResponseField>
+
+<ResponseField name="status" type="string" required>
+  Current status of the wallet
+</ResponseField>
+
+<ResponseField name="created_at" type="string" required>
+  Timestamp of wallet creation
+</ResponseField>
+
+<ResponseField name="updated_at" type="string" required>
+  Timestamp of last wallet update
+</ResponseField>
+
+<ResponseField name="address" type="string" required>
+  Unique address of the wallet
+</ResponseField>
+
+<ResponseField name="projectId" type="number" required>
+  ID of the project the wallet belongs to
+</ResponseField>
+
+<ResponseField name="balance" type="Balance[]" required>
+  Array of balance objects for different currencies
+</ResponseField>
+
+<ResponseField name="transactions" type="Transaction[]" required>
+  Array of recent transactions for the wallet
+</ResponseField>
+
+## Endpoints
+
+### Create Wallet
+
+
+POST /wallets/create/{type}
+
+### List Customer Wallets
+
+```
+GET /wallets/customer
+```
+
+Retrieve a list of customer wallets.
+
+### List System Wallets
+
+```
+GET /wallets/system
+```
+
+Retrieve a list of system wallets.
+
+### Get Wallet Details
+
+```
+GET /wallets/{id}
+```
+
+Get details of a specific wallet.
+
+### Change Wallet Status
+
+```
+PUT /wallets/status/{id}
+```
+
+Change the status of a wallet.
+
+For detailed information on request/response formats and examples, please refer to the [API Reference](/api-reference/wallets).

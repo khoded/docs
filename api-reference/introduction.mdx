@@ -1,33 +1,68 @@
 ---
-title: 'Introduction'
-description: 'Example section for showcasing API endpoints'
+title: 'API Reference'
+description: 'Overview of the Harbor Ledger API endpoints'
 ---
 
-<Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
-</Note>
-
-## Welcome
-
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
 
 <Card
-  title="Plant Store Endpoints"
+  title="Harbor Harbor Ledger  Endpoints"
   icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
+  href="https://github.com/khoded/docs/main/api-reference/openapi.json"
 >
   View the OpenAPI specification file
 </Card>
 
 ## Authentication
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
+All API endpoints require an `api_key` to be sent in the header. Make sure to include this in every request:
 
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
+```bash
+curl -H "api_key: YOUR_API_KEY_HERE" ...
 ```
+
+## Base URL
+
+For local development:
+
+http://localhost:4000
+
+For production:
+
+// TODO: publish prod env.
+
+## API Endpoints
+
+The Harbor Ledger API provides endpoints for managing assets, projects, wallets, and transactions. Here's an overview of the main resources:
+
+<CardGroup cols={2}>
+  <Card
+    title="Assets"
+    icon="coins"
+    href="/essentials/assets"
+  >
+    Create, list, and manage digital assets
+  </Card>
+  <Card
+    title="Projects"
+    icon="folder-tree"
+    href="/essentials/projects"
+  >
+    Organize your digital economy with projects
+  </Card>
+  <Card
+    title="Wallets"
+    icon="wallet"
+    href="/essentials/wallets"
+  >
+    Manage customer and system wallets
+  </Card>
+  <Card
+    title="Transactions"
+    icon="money-bill-transfer"
+    href="/essentials/transactions"
+  >
+    Process asset transfers between wallets
+  </Card>
+</CardGroup>
+
+For detailed information on each endpoint, including request/response formats and examples, please refer to the specific resource pages linked above.
