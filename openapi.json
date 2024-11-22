@@ -1,835 +1,876 @@
 {
-    "components": {
-      "responses": {
-        "APIError": {
+  "components": {
+    "responses": {
+      "APIError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "externalDocs": {
+                "url": "https://pkg.go.dev/encore.dev/beta/errs#Error"
+              },
+              "properties": {
+                "code": {
+                  "description": "Error code",
+                  "example": "not_found",
+                  "externalDocs": {
+                    "url": "https://pkg.go.dev/encore.dev/beta/errs#ErrCode"
+                  },
+                  "type": "string"
+                },
+                "details": {
+                  "description": "Error details",
+                  "type": "object"
+                },
+                "message": {
+                  "description": "Error message",
+                  "type": "string"
+                }
+              },
+              "title": "APIError",
+              "type": "object"
+            }
+          }
+        },
+        "description": "Error response"
+      }
+    },
+    "schemas": {
+      "asset.Asset": {
+        "properties": {
+          "created_at": {
+            "type": "string"
+          },
+          "fractions": {
+            "type": "number"
+          },
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "owner": {
+            "type": "string"
+          },
+          "symbol": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "symbol",
+          "fractions",
+          "created_at",
+          "updated_at",
+          "owner"
+        ],
+        "type": "object"
+      },
+      "asset.Pagination": {
+        "properties": {
+          "limit": {
+            "type": "number"
+          },
+          "page": {
+            "type": "number"
+          },
+          "total": {
+            "type": "number"
+          },
+          "totalPages": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "page",
+          "limit",
+          "total",
+          "totalPages"
+        ],
+        "type": "object"
+      },
+      "project.Pagination": {
+        "properties": {
+          "limit": {
+            "type": "number"
+          },
+          "page": {
+            "type": "number"
+          },
+          "total": {
+            "type": "number"
+          },
+          "totalPages": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "page",
+          "limit",
+          "total",
+          "totalPages"
+        ],
+        "type": "object"
+      },
+      "project.Project": {
+        "properties": {
+          "asset_id": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "exchangeRate": {
+            "type": "number"
+          },
+          "id": {
+            "type": "number"
+          },
+          "metadata": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object"
+          },
+          "name": {
+            "type": "string"
+          },
+          "owner": {
+            "type": "string"
+          },
+          "supportExchangeRate": {
+            "type": "boolean"
+          },
+          "type": {
+            "enum": [
+              "loyalty",
+              "virtual"
+            ],
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "owner",
+          "asset_id",
+          "supportExchangeRate",
+          "exchangeRate",
+          "type",
+          "metadata",
+          "created_at",
+          "updated_at"
+        ],
+        "type": "object"
+      },
+      "transaction.Balance": {
+        "properties": {
+          "account": {
+            "type": "string"
+          },
+          "balance": {
+            "type": "number"
+          },
+          "currency": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "account",
+          "currency",
+          "balance"
+        ],
+        "type": "object"
+      },
+      "transaction.Pagination": {
+        "properties": {
+          "limit": {
+            "type": "number"
+          },
+          "page": {
+            "type": "number"
+          },
+          "total": {
+            "type": "number"
+          },
+          "totalPages": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "page",
+          "limit",
+          "total",
+          "totalPages"
+        ],
+        "type": "object"
+      },
+      "transaction.Transaction": {
+        "properties": {
+          "amount": {
+            "type": "number"
+          },
+          "balance": {
+            "type": "number"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "from": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "amount",
+          "date",
+          "currency",
+          "balance",
+          "from",
+          "id",
+          "to"
+        ],
+        "type": "object"
+      },
+      "wallet.Balance": {
+        "properties": {
+          "account": {
+            "type": "string"
+          },
+          "balance": {
+            "type": "number"
+          },
+          "currency": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "account",
+          "currency",
+          "balance"
+        ],
+        "type": "object"
+      },
+      "wallet.Pagination": {
+        "properties": {
+          "limit": {
+            "type": "number"
+          },
+          "page": {
+            "type": "number"
+          },
+          "total": {
+            "type": "number"
+          },
+          "totalPages": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "page",
+          "limit",
+          "total",
+          "totalPages"
+        ],
+        "type": "object"
+      },
+      "wallet.Transaction": {
+        "properties": {
+          "amount": {
+            "type": "number"
+          },
+          "balance": {
+            "type": "number"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "from": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "amount",
+          "date",
+          "currency",
+          "balance",
+          "from",
+          "id",
+          "to"
+        ],
+        "type": "object"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated by encore",
+    "title": "API for ledger-api-vq7i",
+    "version": "1",
+    "x-logo": {
+      "altText": "Encore logo",
+      "backgroundColor": "#EEEEE1",
+      "url": "https://encore.dev/assets/branding/logo/logo-black.png"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/assets": {
+      "get": {
+        "operationId": "GET:asset.list",
+        "parameters": [
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "header",
+            "name": "api_key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple"
+          },
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "number"
+            },
+            "style": "form"
+          },
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "number"
+            },
+            "style": "form"
+          },
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "query",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "number"
+            },
+            "style": "form"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "assets": {
+                      "items": {
+                        "$ref": "#/components/schemas/asset.Asset"
+                      },
+                      "type": "array"
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/asset.Pagination"
+                    }
+                  },
+                  "required": [
+                    "assets",
+                    "pagination"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Success response"
+          },
+          "default": {
+            "$ref": "#/components/responses/APIError"
+          }
+        },
+        "summary": "List all assets\n"
+      },
+      "post": {
+        "operationId": "POST:asset.create",
+        "parameters": [
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "header",
+            "name": "api_key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple"
+          }
+        ],
+        "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "externalDocs": {
-                  "url": "https://pkg.go.dev/encore.dev/beta/errs#Error"
-                },
                 "properties": {
-                  "code": {
-                    "description": "Error code",
-                    "example": "not_found",
-                    "externalDocs": {
-                      "url": "https://pkg.go.dev/encore.dev/beta/errs#ErrCode"
-                    },
+                  "fractions": {
+                    "type": "number"
+                  },
+                  "name": {
                     "type": "string"
                   },
-                  "details": {
-                    "description": "Error details",
-                    "type": "object"
+                  "projectId": {
+                    "type": "number"
                   },
-                  "message": {
-                    "description": "Error message",
+                  "symbol": {
                     "type": "string"
                   }
                 },
-                "title": "APIError",
+                "required": [
+                  "name",
+                  "symbol",
+                  "fractions",
+                  "projectId"
+                ],
                 "type": "object"
               }
             }
-          },
-          "description": "Error response"
-        }
-      },
-      "schemas": {
-        "asset.Asset": {
-          "properties": {
-            "created_at": {
-              "type": "string"
-            },
-            "fractions": {
-              "type": "number"
-            },
-            "id": {
-              "type": "string"
-            },
-            "name": {
-              "type": "string"
-            },
-            "owner": {
-              "type": "string"
-            },
-            "symbol": {
-              "type": "string"
-            },
-            "updated_at": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "id",
-            "name",
-            "symbol",
-            "fractions",
-            "created_at",
-            "updated_at",
-            "owner"
-          ],
-          "type": "object"
+          }
         },
-        "asset.Pagination": {
-          "properties": {
-            "limit": {
-              "type": "number"
-            },
-            "page": {
-              "type": "number"
-            },
-            "total": {
-              "type": "number"
-            },
-            "totalPages": {
-              "type": "number"
-            }
-          },
-          "required": [
-            "page",
-            "limit",
-            "total",
-            "totalPages"
-          ],
-          "type": "object"
-        },
-        "project.Pagination": {
-          "properties": {
-            "limit": {
-              "type": "number"
-            },
-            "page": {
-              "type": "number"
-            },
-            "total": {
-              "type": "number"
-            },
-            "totalPages": {
-              "type": "number"
-            }
-          },
-          "required": [
-            "page",
-            "limit",
-            "total",
-            "totalPages"
-          ],
-          "type": "object"
-        },
-        "project.Project": {
-          "properties": {
-            "asset_id": {
-              "type": "string"
-            },
-            "created_at": {
-              "type": "string"
-            },
-            "exchangeRate": {
-              "type": "number"
-            },
-            "id": {
-              "type": "number"
-            },
-            "metadata": {
-              "additionalProperties": {
-                "type": "string"
-              },
-              "type": "object"
-            },
-            "name": {
-              "type": "string"
-            },
-            "owner": {
-              "type": "string"
-            },
-            "supportExchangeRate": {
-              "type": "boolean"
-            },
-            "type": {
-              "enum": [
-                "loyalty",
-                "virtual"
-              ],
-              "type": "string"
-            },
-            "updated_at": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "id",
-            "name",
-            "owner",
-            "asset_id",
-            "supportExchangeRate",
-            "exchangeRate",
-            "type",
-            "metadata",
-            "created_at",
-            "updated_at"
-          ],
-          "type": "object"
-        },
-        "transaction.Balance": {
-          "properties": {
-            "account": {
-              "type": "string"
-            },
-            "balance": {
-              "type": "number"
-            },
-            "currency": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "account",
-            "currency",
-            "balance"
-          ],
-          "type": "object"
-        },
-        "transaction.Pagination": {
-          "properties": {
-            "limit": {
-              "type": "number"
-            },
-            "page": {
-              "type": "number"
-            },
-            "total": {
-              "type": "number"
-            },
-            "totalPages": {
-              "type": "number"
-            }
-          },
-          "required": [
-            "page",
-            "limit",
-            "total",
-            "totalPages"
-          ],
-          "type": "object"
-        },
-        "transaction.Transaction": {
-          "properties": {
-            "amount": {
-              "type": "number"
-            },
-            "balance": {
-              "type": "number"
-            },
-            "currency": {
-              "type": "string"
-            },
-            "date": {
-              "type": "string"
-            },
-            "from": {
-              "type": "string"
-            },
-            "id": {
-              "type": "string"
-            },
-            "to": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "amount",
-            "date",
-            "currency",
-            "balance",
-            "from",
-            "id",
-            "to"
-          ],
-          "type": "object"
-        },
-        "wallet.Balance": {
-          "properties": {
-            "account": {
-              "type": "string"
-            },
-            "balance": {
-              "type": "number"
-            },
-            "currency": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "account",
-            "currency",
-            "balance"
-          ],
-          "type": "object"
-        },
-        "wallet.Pagination": {
-          "properties": {
-            "limit": {
-              "type": "number"
-            },
-            "page": {
-              "type": "number"
-            },
-            "total": {
-              "type": "number"
-            },
-            "totalPages": {
-              "type": "number"
-            }
-          },
-          "required": [
-            "page",
-            "limit",
-            "total",
-            "totalPages"
-          ],
-          "type": "object"
-        },
-        "wallet.Transaction": {
-          "properties": {
-            "amount": {
-              "type": "number"
-            },
-            "balance": {
-              "type": "number"
-            },
-            "currency": {
-              "type": "string"
-            },
-            "date": {
-              "type": "string"
-            },
-            "from": {
-              "type": "string"
-            },
-            "id": {
-              "type": "string"
-            },
-            "to": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "amount",
-            "date",
-            "currency",
-            "balance",
-            "from",
-            "id",
-            "to"
-          ],
-          "type": "object"
-        }
-      }
-    },
-    "info": {
-      "description": "Generated by encore",
-      "title": "API for Harbor Ledger-api-vq7i",
-      "version": "1",
-      "x-logo": {
-        "altText": "Encore logo",
-        "backgroundColor": "#EEEEE1",
-        "url": "https://encore.dev/assets/branding/logo/logo-black.png"
-      }
-    },
-    "openapi": "3.0.0",
-    "paths": {
-      "/assets": {
-        "get": {
-          "operationId": "GET:asset.list",
-          "parameters": [
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "header",
-              "name": "api_key",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "style": "simple"
-            },
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "query",
-              "name": "page",
-              "schema": {
-                "type": "number"
-              },
-              "style": "form"
-            },
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "query",
-              "name": "limit",
-              "schema": {
-                "type": "number"
-              },
-              "style": "form"
-            },
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "query",
-              "name": "projectId",
-              "required": true,
-              "schema": {
-                "type": "number"
-              },
-              "style": "form"
-            }
-          ],
-          "responses": {
-            "200": {
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "properties": {
-                      "assets": {
-                        "items": {
-                          "$ref": "#/components/schemas/asset.Asset"
-                        },
-                        "type": "array"
-                      },
-                      "pagination": {
-                        "$ref": "#/components/schemas/asset.Pagination"
-                      }
-                    },
-                    "required": [
-                      "assets",
-                      "pagination"
-                    ],
-                    "type": "object"
-                  }
-                }
-              },
-              "description": "Success response"
-            },
-            "default": {
-              "$ref": "#/components/responses/APIError"
-            }
-          },
-          "summary": "List all assets\n"
-        },
-        "post": {
-          "operationId": "POST:asset.create",
-          "parameters": [
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "header",
-              "name": "api_key",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "style": "simple"
-            }
-          ],
-          "requestBody": {
+        "responses": {
+          "200": {
             "content": {
               "application/json": {
                 "schema": {
                   "properties": {
+                    "created_at": {
+                      "type": "string"
+                    },
                     "fractions": {
                       "type": "number"
                     },
+                    "id": {
+                      "type": "string"
+                    },
                     "name": {
                       "type": "string"
                     },
-                    "projectId": {
-                      "type": "number"
+                    "owner": {
+                      "type": "string"
                     },
                     "symbol": {
+                      "type": "string"
+                    },
+                    "updated_at": {
                       "type": "string"
                     }
                   },
                   "required": [
+                    "id",
                     "name",
                     "symbol",
                     "fractions",
-                    "projectId"
+                    "created_at",
+                    "updated_at",
+                    "owner"
                   ],
                   "type": "object"
                 }
               }
-            }
-          },
-          "responses": {
-            "200": {
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "properties": {
-                      "created_at": {
-                        "type": "string"
-                      },
-                      "fractions": {
-                        "type": "number"
-                      },
-                      "id": {
-                        "type": "string"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "owner": {
-                        "type": "string"
-                      },
-                      "symbol": {
-                        "type": "string"
-                      },
-                      "updated_at": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "id",
-                      "name",
-                      "symbol",
-                      "fractions",
-                      "created_at",
-                      "updated_at",
-                      "owner"
-                    ],
-                    "type": "object"
-                  }
-                }
-              },
-              "description": "Success response"
             },
-            "default": {
-              "$ref": "#/components/responses/APIError"
-            }
+            "description": "Success response"
           },
-          "summary": "Create a new asset\n"
-        }
+          "default": {
+            "$ref": "#/components/responses/APIError"
+          }
+        },
+        "summary": "Create a new asset\n"
+      }
+    },
+    "/assets/{id}": {
+      "delete": {
+        "operationId": "DELETE:asset.deleteAsset",
+        "parameters": [
+          {
+            "allowEmptyValue": true,
+            "explode": false,
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple"
+          },
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "header",
+            "name": "api_key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple"
+          },
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "query",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "number"
+            },
+            "style": "form"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success response"
+          },
+          "default": {
+            "$ref": "#/components/responses/APIError"
+          }
+        },
+        "summary": "Delete an asset\n"
       },
-      "/assets/{id}": {
-        "delete": {
-          "operationId": "DELETE:asset.deleteAsset",
-          "parameters": [
-            {
-              "allowEmptyValue": true,
-              "explode": false,
-              "in": "path",
-              "name": "id",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "style": "simple"
+      "get": {
+        "operationId": "GET:asset.get",
+        "parameters": [
+          {
+            "allowEmptyValue": true,
+            "explode": false,
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
             },
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "header",
-              "name": "api_key",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "style": "simple"
-            },
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "query",
-              "name": "projectId",
-              "required": true,
-              "schema": {
-                "type": "number"
-              },
-              "style": "form"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Success response"
-            },
-            "default": {
-              "$ref": "#/components/responses/APIError"
-            }
+            "style": "simple"
           },
-          "summary": "Delete an asset\n"
-        },
-        "get": {
-          "operationId": "GET:asset.get",
-          "parameters": [
-            {
-              "allowEmptyValue": true,
-              "explode": false,
-              "in": "path",
-              "name": "id",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "style": "simple"
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "header",
+            "name": "api_key",
+            "required": true,
+            "schema": {
+              "type": "string"
             },
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "header",
-              "name": "api_key",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "style": "simple"
-            },
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "query",
-              "name": "projectId",
-              "required": true,
-              "schema": {
-                "type": "number"
-              },
-              "style": "form"
-            }
-          ],
-          "responses": {
-            "200": {
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "properties": {
-                      "created_at": {
-                        "type": "string"
-                      },
-                      "fractions": {
-                        "type": "number"
-                      },
-                      "id": {
-                        "type": "string"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "owner": {
-                        "type": "string"
-                      },
-                      "symbol": {
-                        "type": "string"
-                      },
-                      "updated_at": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "id",
-                      "name",
-                      "symbol",
-                      "fractions",
-                      "created_at",
-                      "updated_at",
-                      "owner"
-                    ],
-                    "type": "object"
-                  }
-                }
-              },
-              "description": "Success response"
-            },
-            "default": {
-              "$ref": "#/components/responses/APIError"
-            }
+            "style": "simple"
           },
-          "summary": "Get details of a specific asset\n"
-        },
-        "put": {
-          "operationId": "PUT:asset.rename",
-          "parameters": [
-            {
-              "allowEmptyValue": true,
-              "explode": false,
-              "in": "path",
-              "name": "id",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "style": "simple"
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "query",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "number"
             },
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "header",
-              "name": "api_key",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "style": "simple"
-            }
-          ],
-          "requestBody": {
+            "style": "form"
+          }
+        ],
+        "responses": {
+          "200": {
             "content": {
               "application/json": {
                 "schema": {
                   "properties": {
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "fractions": {
+                      "type": "number"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
                     "name": {
                       "type": "string"
                     },
-                    "projectId": {
-                      "type": "number"
+                    "owner": {
+                      "type": "string"
                     },
                     "symbol": {
+                      "type": "string"
+                    },
+                    "updated_at": {
                       "type": "string"
                     }
                   },
                   "required": [
-                    "projectId",
+                    "id",
                     "name",
-                    "symbol"
+                    "symbol",
+                    "fractions",
+                    "created_at",
+                    "updated_at",
+                    "owner"
                   ],
                   "type": "object"
                 }
               }
-            }
+            },
+            "description": "Success response"
           },
-          "responses": {
-            "200": {
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "properties": {
-                      "created_at": {
-                        "type": "string"
-                      },
-                      "fractions": {
-                        "type": "number"
-                      },
-                      "id": {
-                        "type": "string"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "owner": {
-                        "type": "string"
-                      },
-                      "symbol": {
-                        "type": "string"
-                      },
-                      "updated_at": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "id",
-                      "name",
-                      "symbol",
-                      "fractions",
-                      "created_at",
-                      "updated_at",
-                      "owner"
-                    ],
-                    "type": "object"
-                  }
-                }
-              },
-              "description": "Success response"
-            },
-            "default": {
-              "$ref": "#/components/responses/APIError"
-            }
-          },
-          "summary": "Rename an existing asset\n"
-        }
-      },
-      "/projects": {
-        "get": {
-          "operationId": "GET:project.list",
-          "parameters": [
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "header",
-              "name": "api_key",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "style": "simple"
-            },
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "query",
-              "name": "page",
-              "schema": {
-                "type": "number"
-              },
-              "style": "form"
-            },
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "query",
-              "name": "limit",
-              "schema": {
-                "type": "number"
-              },
-              "style": "form"
-            }
-          ],
-          "responses": {
-            "200": {
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "properties": {
-                      "pagination": {
-                        "$ref": "#/components/schemas/project.Pagination"
-                      },
-                      "projects": {
-                        "items": {
-                          "$ref": "#/components/schemas/project.Project"
-                        },
-                        "type": "array"
-                      }
-                    },
-                    "required": [
-                      "projects",
-                      "pagination"
-                    ],
-                    "type": "object"
-                  }
-                }
-              },
-              "description": "Success response"
-            },
-            "default": {
-              "$ref": "#/components/responses/APIError"
-            }
-          },
-          "summary": "List all projects\n"
+          "default": {
+            "$ref": "#/components/responses/APIError"
+          }
         },
-        "post": {
-          "operationId": "POST:project.create",
-          "parameters": [
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "header",
-              "name": "api_key",
-              "required": true,
+        "summary": "Get details of a specific asset\n"
+      },
+      "put": {
+        "operationId": "PUT:asset.rename",
+        "parameters": [
+          {
+            "allowEmptyValue": true,
+            "explode": false,
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple"
+          },
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "header",
+            "name": "api_key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
               "schema": {
-                "type": "string"
-              },
-              "style": "simple"
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "projectId": {
+                    "type": "number"
+                  },
+                  "symbol": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "projectId",
+                  "name",
+                  "symbol"
+                ],
+                "type": "object"
+              }
             }
-          ],
-          "requestBody": {
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "fractions": {
+                      "type": "number"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "owner": {
+                      "type": "string"
+                    },
+                    "symbol": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "symbol",
+                    "fractions",
+                    "created_at",
+                    "updated_at",
+                    "owner"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Success response"
+          },
+          "default": {
+            "$ref": "#/components/responses/APIError"
+          }
+        },
+        "summary": "Rename an existing asset\n"
+      }
+    },
+    "/projects": {
+      "get": {
+        "operationId": "GET:project.list",
+        "parameters": [
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "header",
+            "name": "api_key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple"
+          },
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "number"
+            },
+            "style": "form"
+          },
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "number"
+            },
+            "style": "form"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "pagination": {
+                      "$ref": "#/components/schemas/project.Pagination"
+                    },
+                    "projects": {
+                      "items": {
+                        "$ref": "#/components/schemas/project.Project"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "projects",
+                    "pagination"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Success response"
+          },
+          "default": {
+            "$ref": "#/components/responses/APIError"
+          }
+        },
+        "summary": "List all projects\n"
+      },
+      "post": {
+        "operationId": "POST:project.create",
+        "parameters": [
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "header",
+            "name": "api_key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "asset_id": {
+                    "type": "string"
+                  },
+                  "exchangeRate": {
+                    "type": "number"
+                  },
+                  "metadata": {
+                    "additionalProperties": {
+                      "type": "string"
+                    },
+                    "type": "object"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "supportExchangeRate": {
+                    "type": "boolean"
+                  },
+                  "type": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "asset_id",
+                  "supportExchangeRate",
+                  "exchangeRate",
+                  "type",
+                  "metadata"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
             "content": {
               "application/json": {
                 "schema": {
@@ -837,7 +878,13 @@
                     "asset_id": {
                       "type": "string"
                     },
+                    "created_at": {
+                      "type": "string"
+                    },
                     "exchangeRate": {
+                      "type": "number"
+                    },
+                    "id": {
                       "type": "number"
                     },
                     "metadata": {
@@ -849,658 +896,633 @@
                     "name": {
                       "type": "string"
                     },
+                    "owner": {
+                      "type": "string"
+                    },
                     "supportExchangeRate": {
                       "type": "boolean"
                     },
                     "type": {
+                      "enum": [
+                        "loyalty",
+                        "virtual"
+                      ],
+                      "type": "string"
+                    },
+                    "updated_at": {
                       "type": "string"
                     }
                   },
                   "required": [
+                    "id",
                     "name",
+                    "owner",
                     "asset_id",
                     "supportExchangeRate",
                     "exchangeRate",
                     "type",
-                    "metadata"
+                    "metadata",
+                    "created_at",
+                    "updated_at"
                   ],
                   "type": "object"
                 }
               }
-            }
-          },
-          "responses": {
-            "200": {
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "properties": {
-                      "asset_id": {
-                        "type": "string"
-                      },
-                      "created_at": {
-                        "type": "string"
-                      },
-                      "exchangeRate": {
-                        "type": "number"
-                      },
-                      "id": {
-                        "type": "number"
-                      },
-                      "metadata": {
-                        "additionalProperties": {
-                          "type": "string"
-                        },
-                        "type": "object"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "owner": {
-                        "type": "string"
-                      },
-                      "supportExchangeRate": {
-                        "type": "boolean"
-                      },
-                      "type": {
-                        "enum": [
-                          "loyalty",
-                          "virtual"
-                        ],
-                        "type": "string"
-                      },
-                      "updated_at": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "id",
-                      "name",
-                      "owner",
-                      "asset_id",
-                      "supportExchangeRate",
-                      "exchangeRate",
-                      "type",
-                      "metadata",
-                      "created_at",
-                      "updated_at"
-                    ],
-                    "type": "object"
-                  }
-                }
-              },
-              "description": "Success response"
             },
-            "default": {
-              "$ref": "#/components/responses/APIError"
-            }
+            "description": "Success response"
           },
-          "summary": "Create a new project\n"
-        }
-      },
-      "/projects/{id}": {
-        "get": {
-          "operationId": "GET:project.get",
-          "parameters": [
-            {
-              "allowEmptyValue": true,
-              "explode": false,
-              "in": "path",
-              "name": "id",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "style": "simple"
-            },
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "header",
-              "name": "api_key",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "style": "simple"
-            }
-          ],
-          "responses": {
-            "200": {
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "properties": {
-                      "asset_id": {
-                        "type": "string"
-                      },
-                      "created_at": {
-                        "type": "string"
-                      },
-                      "exchangeRate": {
-                        "type": "number"
-                      },
-                      "id": {
-                        "type": "number"
-                      },
-                      "metadata": {
-                        "additionalProperties": {
-                          "type": "string"
-                        },
-                        "type": "object"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "owner": {
-                        "type": "string"
-                      },
-                      "supportExchangeRate": {
-                        "type": "boolean"
-                      },
-                      "type": {
-                        "enum": [
-                          "loyalty",
-                          "virtual"
-                        ],
-                        "type": "string"
-                      },
-                      "updated_at": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "id",
-                      "name",
-                      "owner",
-                      "asset_id",
-                      "supportExchangeRate",
-                      "exchangeRate",
-                      "type",
-                      "metadata",
-                      "created_at",
-                      "updated_at"
-                    ],
-                    "type": "object"
-                  }
-                }
-              },
-              "description": "Success response"
-            },
-            "default": {
-              "$ref": "#/components/responses/APIError"
-            }
-          },
-          "summary": "Get details of a specific project\n"
+          "default": {
+            "$ref": "#/components/responses/APIError"
+          }
         },
-        "put": {
-          "operationId": "PUT:project.rename",
-          "parameters": [
-            {
-              "allowEmptyValue": true,
-              "explode": false,
-              "in": "path",
-              "name": "id",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "style": "simple"
+        "summary": "Create a new project\n"
+      }
+    },
+    "/projects/{id}": {
+      "get": {
+        "operationId": "GET:project.get",
+        "parameters": [
+          {
+            "allowEmptyValue": true,
+            "explode": false,
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
             },
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "header",
-              "name": "api_key",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "style": "simple"
-            }
-          ],
-          "requestBody": {
+            "style": "simple"
+          },
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "header",
+            "name": "api_key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple"
+          }
+        ],
+        "responses": {
+          "200": {
             "content": {
               "application/json": {
                 "schema": {
                   "properties": {
+                    "asset_id": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "exchangeRate": {
+                      "type": "number"
+                    },
+                    "id": {
+                      "type": "number"
+                    },
+                    "metadata": {
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "type": "object"
+                    },
                     "name": {
                       "type": "string"
+                    },
+                    "owner": {
+                      "type": "string"
+                    },
+                    "supportExchangeRate": {
+                      "type": "boolean"
+                    },
+                    "type": {
+                      "enum": [
+                        "loyalty",
+                        "virtual"
+                      ],
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
                     }
                   },
                   "required": [
-                    "name"
+                    "id",
+                    "name",
+                    "owner",
+                    "asset_id",
+                    "supportExchangeRate",
+                    "exchangeRate",
+                    "type",
+                    "metadata",
+                    "created_at",
+                    "updated_at"
                   ],
                   "type": "object"
                 }
               }
-            }
+            },
+            "description": "Success response"
           },
-          "responses": {
-            "200": {
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "properties": {
-                      "asset_id": {
-                        "type": "string"
-                      },
-                      "created_at": {
-                        "type": "string"
-                      },
-                      "exchangeRate": {
-                        "type": "number"
-                      },
-                      "id": {
-                        "type": "number"
-                      },
-                      "metadata": {
-                        "additionalProperties": {
-                          "type": "string"
-                        },
-                        "type": "object"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "owner": {
-                        "type": "string"
-                      },
-                      "supportExchangeRate": {
-                        "type": "boolean"
-                      },
-                      "type": {
-                        "enum": [
-                          "loyalty",
-                          "virtual"
-                        ],
-                        "type": "string"
-                      },
-                      "updated_at": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "id",
-                      "name",
-                      "owner",
-                      "asset_id",
-                      "supportExchangeRate",
-                      "exchangeRate",
-                      "type",
-                      "metadata",
-                      "created_at",
-                      "updated_at"
-                    ],
-                    "type": "object"
-                  }
-                }
-              },
-              "description": "Success response"
-            },
-            "default": {
-              "$ref": "#/components/responses/APIError"
-            }
-          },
-          "summary": "Rename an existing project\n"
-        }
-      },
-      "/transactions": {
-        "get": {
-          "operationId": "GET:transaction.listTransactions",
-          "parameters": [
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "header",
-              "name": "api_key",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "style": "simple"
-            },
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "query",
-              "name": "walletAddress",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "style": "form"
-            },
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "query",
-              "name": "page",
-              "schema": {
-                "type": "number"
-              },
-              "style": "form"
-            },
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "query",
-              "name": "limit",
-              "schema": {
-                "type": "number"
-              },
-              "style": "form"
-            },
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "query",
-              "name": "projectId",
-              "required": true,
-              "schema": {
-                "type": "number"
-              },
-              "style": "form"
-            }
-          ],
-          "responses": {
-            "200": {
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "properties": {
-                      "balance": {
-                        "$ref": "#/components/schemas/transaction.Balance"
-                      },
-                      "pagination": {
-                        "$ref": "#/components/schemas/transaction.Pagination"
-                      },
-                      "transactions": {
-                        "items": {
-                          "$ref": "#/components/schemas/transaction.Transaction"
-                        },
-                        "type": "array"
-                      }
-                    },
-                    "required": [
-                      "balance",
-                      "transactions",
-                      "pagination"
-                    ],
-                    "type": "object"
-                  }
-                }
-              },
-              "description": "Success response"
-            },
-            "default": {
-              "$ref": "#/components/responses/APIError"
-            }
-          },
-          "summary": "List transactions for a wallet\n"
+          "default": {
+            "$ref": "#/components/responses/APIError"
+          }
         },
-        "post": {
-          "operationId": "POST:transaction.runTransaction",
-          "parameters": [
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "header",
-              "name": "api_key",
-              "required": true,
+        "summary": "Get details of a specific project\n"
+      },
+      "put": {
+        "operationId": "PUT:project.rename",
+        "parameters": [
+          {
+            "allowEmptyValue": true,
+            "explode": false,
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple"
+          },
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "header",
+            "name": "api_key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
               "schema": {
-                "type": "string"
-              },
-              "style": "simple"
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name"
+                ],
+                "type": "object"
+              }
             }
-          ],
-          "requestBody": {
+          }
+        },
+        "responses": {
+          "200": {
             "content": {
               "application/json": {
                 "schema": {
                   "properties": {
-                    "amount": {
-                      "type": "number"
-                    },
-                    "currency": {
+                    "asset_id": {
                       "type": "string"
                     },
-                    "from": {
+                    "created_at": {
                       "type": "string"
                     },
-                    "projectId": {
+                    "exchangeRate": {
                       "type": "number"
                     },
-                    "to": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "metadata": {
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "type": "object"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "owner": {
+                      "type": "string"
+                    },
+                    "supportExchangeRate": {
+                      "type": "boolean"
+                    },
+                    "type": {
+                      "enum": [
+                        "loyalty",
+                        "virtual"
+                      ],
+                      "type": "string"
+                    },
+                    "updated_at": {
                       "type": "string"
                     }
                   },
                   "required": [
-                    "from",
-                    "to",
-                    "amount",
-                    "currency",
-                    "projectId"
+                    "id",
+                    "name",
+                    "owner",
+                    "asset_id",
+                    "supportExchangeRate",
+                    "exchangeRate",
+                    "type",
+                    "metadata",
+                    "created_at",
+                    "updated_at"
                   ],
                   "type": "object"
                 }
               }
-            }
+            },
+            "description": "Success response"
           },
-          "responses": {
-            "200": {
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "properties": {
-                      "transaction": {
+          "default": {
+            "$ref": "#/components/responses/APIError"
+          }
+        },
+        "summary": "Rename an existing project\n"
+      }
+    },
+    "/transactions": {
+      "get": {
+        "operationId": "GET:transaction.listTransactions",
+        "parameters": [
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "header",
+            "name": "api_key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple"
+          },
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "query",
+            "name": "walletAddress",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "style": "form"
+          },
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "number"
+            },
+            "style": "form"
+          },
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "number"
+            },
+            "style": "form"
+          },
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "query",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "number"
+            },
+            "style": "form"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "balance": {
+                      "$ref": "#/components/schemas/transaction.Balance"
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/transaction.Pagination"
+                    },
+                    "transactions": {
+                      "items": {
                         "$ref": "#/components/schemas/transaction.Transaction"
-                      }
-                    },
-                    "required": [
-                      "transaction"
-                    ],
-                    "type": "object"
-                  }
-                }
-              },
-              "description": "Success response"
-            },
-            "default": {
-              "$ref": "#/components/responses/APIError"
-            }
-          },
-          "summary": "Run a new transaction between two wallets\n"
-        }
-      },
-      "/transactions/seed": {
-        "post": {
-          "operationId": "POST:transaction.seedTransaction",
-          "parameters": [
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "header",
-              "name": "api_key",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "style": "simple"
-            }
-          ],
-          "requestBody": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "amount": {
-                      "type": "number"
-                    },
-                    "currency": {
-                      "type": "string"
-                    },
-                    "projectId": {
-                      "type": "number"
-                    },
-                    "to": {
-                      "type": "string"
+                      },
+                      "type": "array"
                     }
                   },
                   "required": [
-                    "to",
-                    "amount",
-                    "currency",
-                    "projectId"
+                    "balance",
+                    "transactions",
+                    "pagination"
                   ],
                   "type": "object"
                 }
               }
-            }
-          },
-          "responses": {
-            "200": {
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "properties": {
-                      "transaction": {
-                        "items": {
-                          "$ref": "#/components/schemas/transaction.Transaction"
-                        },
-                        "type": "array"
-                      }
-                    },
-                    "required": [
-                      "transaction"
-                    ],
-                    "type": "object"
-                  }
-                }
-              },
-              "description": "Success response"
             },
-            "default": {
-              "$ref": "#/components/responses/APIError"
-            }
+            "description": "Success response"
           },
-          "summary": "Seed a new transaction to a system wallet\n"
-        }
+          "default": {
+            "$ref": "#/components/responses/APIError"
+          }
+        },
+        "summary": "List transactions for a wallet\n"
       },
-      "/user/plan": {
-        "get": {
-          "operationId": "GET:project.getUserPlanDetails",
-          "parameters": [
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "header",
-              "name": "api_key",
-              "required": true,
+      "post": {
+        "operationId": "POST:transaction.runTransaction",
+        "parameters": [
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "header",
+            "name": "api_key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
               "schema": {
-                "type": "string"
-              },
-              "style": "simple"
-            }
-          ],
-          "responses": {
-            "200": {
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "properties": {
-                      "advanced_analytics": {
-                        "type": "boolean"
-                      },
-                      "api_calls_per_day": {
-                        "type": "number"
-                      },
-                      "assets_per_project": {
-                        "type": "number"
-                      },
-                      "custom_branding": {
-                        "type": "boolean"
-                      },
-                      "customer_wallets": {
-                        "type": "number"
-                      },
-                      "plan_code": {
-                        "type": "string"
-                      },
-                      "priority_support": {
-                        "type": "boolean"
-                      },
-                      "projects": {
-                        "type": "number"
-                      },
-                      "subscription_code": {
-                        "type": "string"
-                      },
-                      "subscription_status": {
-                        "type": "string"
-                      },
-                      "system_wallets": {
-                        "type": "number"
-                      },
-                      "user_id": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "user_id",
-                      "subscription_status",
-                      "subscription_code",
-                      "plan_code",
-                      "projects",
-                      "assets_per_project",
-                      "customer_wallets",
-                      "system_wallets",
-                      "api_calls_per_day",
-                      "custom_branding",
-                      "priority_support",
-                      "advanced_analytics"
-                    ],
-                    "type": "object"
+                "properties": {
+                  "amount": {
+                    "type": "number"
+                  },
+                  "currency": {
+                    "type": "string"
+                  },
+                  "from": {
+                    "type": "string"
+                  },
+                  "projectId": {
+                    "type": "number"
+                  },
+                  "to": {
+                    "type": "string"
                   }
+                },
+                "required": [
+                  "from",
+                  "to",
+                  "amount",
+                  "currency",
+                  "projectId"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "transaction": {
+                      "$ref": "#/components/schemas/transaction.Transaction"
+                    }
+                  },
+                  "required": [
+                    "transaction"
+                  ],
+                  "type": "object"
                 }
-              },
-              "description": "Success response"
+              }
             },
-            "default": {
-              "$ref": "#/components/responses/APIError"
-            }
+            "description": "Success response"
           },
-          "summary": "Get user plan\n"
-        }
-      },
-      "/wallets/create/{type}": {
-        "post": {
-          "operationId": "POST:wallet.create",
-          "parameters": [
-            {
-              "allowEmptyValue": true,
-              "explode": false,
-              "in": "path",
-              "name": "type",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "style": "simple"
+          "default": {
+            "$ref": "#/components/responses/APIError"
+          }
+        },
+        "summary": "Run a new transaction between two wallets\n"
+      }
+    },
+    "/transactions/seed": {
+      "post": {
+        "operationId": "POST:transaction.seedTransaction",
+        "parameters": [
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "header",
+            "name": "api_key",
+            "required": true,
+            "schema": {
+              "type": "string"
             },
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "header",
-              "name": "api_key",
-              "required": true,
+            "style": "simple"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
               "schema": {
-                "type": "string"
-              },
-              "style": "simple"
+                "properties": {
+                  "amount": {
+                    "type": "number"
+                  },
+                  "currency": {
+                    "type": "string"
+                  },
+                  "projectId": {
+                    "type": "number"
+                  },
+                  "to": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "to",
+                  "amount",
+                  "currency",
+                  "projectId"
+                ],
+                "type": "object"
+              }
             }
-          ],
-          "requestBody": {
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "transaction": {
+                      "items": {
+                        "$ref": "#/components/schemas/transaction.Transaction"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "transaction"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Success response"
+          },
+          "default": {
+            "$ref": "#/components/responses/APIError"
+          }
+        },
+        "summary": "Seed a new transaction to a system wallet\n"
+      }
+    },
+    "/user/plan": {
+      "get": {
+        "operationId": "GET:project.getUserPlanDetails",
+        "parameters": [
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "header",
+            "name": "api_key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "advanced_analytics": {
+                      "type": "boolean"
+                    },
+                    "api_calls_per_day": {
+                      "type": "number"
+                    },
+                    "assets_per_project": {
+                      "type": "number"
+                    },
+                    "custom_branding": {
+                      "type": "boolean"
+                    },
+                    "customer_wallets": {
+                      "type": "number"
+                    },
+                    "plan_code": {
+                      "type": "string"
+                    },
+                    "priority_support": {
+                      "type": "boolean"
+                    },
+                    "projects": {
+                      "type": "number"
+                    },
+                    "subscription_code": {
+                      "type": "string"
+                    },
+                    "subscription_status": {
+                      "type": "string"
+                    },
+                    "system_wallets": {
+                      "type": "number"
+                    },
+                    "user_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "user_id",
+                    "subscription_status",
+                    "subscription_code",
+                    "plan_code",
+                    "projects",
+                    "assets_per_project",
+                    "customer_wallets",
+                    "system_wallets",
+                    "api_calls_per_day",
+                    "custom_branding",
+                    "priority_support",
+                    "advanced_analytics"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Success response"
+          },
+          "default": {
+            "$ref": "#/components/responses/APIError"
+          }
+        },
+        "summary": "Get user plan\n"
+      }
+    },
+    "/wallets/create/{type}": {
+      "post": {
+        "operationId": "POST:wallet.create",
+        "parameters": [
+          {
+            "allowEmptyValue": true,
+            "explode": false,
+            "in": "path",
+            "name": "type",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple"
+          },
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "header",
+            "name": "api_key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "address": {
+                    "type": "string"
+                  },
+                  "projectId": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "address",
+                  "projectId"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
             "content": {
               "application/json": {
                 "schema": {
@@ -1508,524 +1530,579 @@
                     "address": {
                       "type": "string"
                     },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
                     "projectId": {
                       "type": "number"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
                     }
                   },
                   "required": [
+                    "id",
+                    "type",
+                    "status",
+                    "created_at",
+                    "updated_at",
                     "address",
                     "projectId"
                   ],
                   "type": "object"
                 }
               }
-            }
+            },
+            "description": "Success response"
           },
-          "responses": {
-            "200": {
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "properties": {
-                      "address": {
-                        "type": "string"
-                      },
-                      "created_at": {
-                        "type": "string"
-                      },
-                      "id": {
-                        "type": "string"
-                      },
-                      "projectId": {
-                        "type": "number"
-                      },
-                      "status": {
-                        "type": "string"
-                      },
-                      "type": {
-                        "type": "string"
-                      },
-                      "updated_at": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "id",
-                      "type",
-                      "status",
-                      "created_at",
-                      "updated_at",
-                      "address",
-                      "projectId"
-                    ],
-                    "type": "object"
-                  }
-                }
-              },
-              "description": "Success response"
+          "default": {
+            "$ref": "#/components/responses/APIError"
+          }
+        },
+        "summary": "Create a new wallet\n"
+      }
+    },
+    "/wallets/customer": {
+      "get": {
+        "operationId": "GET:wallet.listCustomerWallets",
+        "parameters": [
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "header",
+            "name": "api_key",
+            "required": true,
+            "schema": {
+              "type": "string"
             },
-            "default": {
-              "$ref": "#/components/responses/APIError"
-            }
+            "style": "simple"
           },
-          "summary": "Create a new wallet\n"
-        }
-      },
-      "/wallets/customer": {
-        "get": {
-          "operationId": "GET:wallet.listCustomerWallets",
-          "parameters": [
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "header",
-              "name": "api_key",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "style": "simple"
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "number"
             },
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "query",
-              "name": "page",
-              "schema": {
-                "type": "number"
-              },
-              "style": "form"
-            },
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "query",
-              "name": "limit",
-              "schema": {
-                "type": "number"
-              },
-              "style": "form"
-            },
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "query",
-              "name": "projectId",
-              "schema": {
-                "type": "number"
-              },
-              "style": "form"
-            }
-          ],
-          "responses": {
-            "200": {
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "properties": {
-                      "pagination": {
-                        "$ref": "#/components/schemas/wallet.Pagination"
-                      },
-                      "wallets": {
-                        "items": {
-                          "properties": {
-                            "address": {
-                              "type": "string"
-                            },
-                            "balance": {
-                              "items": {
-                                "$ref": "#/components/schemas/wallet.Balance"
-                              },
-                              "type": "array"
-                            },
-                            "created_at": {
-                              "type": "string"
-                            },
-                            "id": {
-                              "type": "string"
-                            },
-                            "projectId": {
-                              "type": "number"
-                            },
-                            "status": {
-                              "type": "string"
-                            },
-                            "transactions": {
-                              "items": {
-                                "$ref": "#/components/schemas/wallet.Transaction"
-                              },
-                              "type": "array"
-                            },
-                            "type": {
-                              "type": "string"
-                            },
-                            "updated_at": {
-                              "type": "string"
-                            }
-                          },
-                          "required": [
-                            "id",
-                            "type",
-                            "status",
-                            "created_at",
-                            "updated_at",
-                            "address",
-                            "projectId",
-                            "balance",
-                            "transactions"
-                          ],
-                          "type": "object"
-                        },
-                        "type": "array"
-                      }
-                    },
-                    "required": [
-                      "wallets",
-                      "pagination"
-                    ],
-                    "type": "object"
-                  }
-                }
-              },
-              "description": "Success response"
-            },
-            "default": {
-              "$ref": "#/components/responses/APIError"
-            }
+            "style": "form"
           },
-          "summary": "List customer wallets\n"
-        }
-      },
-      "/wallets/status/{id}": {
-        "put": {
-          "operationId": "PUT:wallet.changeStatus",
-          "parameters": [
-            {
-              "allowEmptyValue": true,
-              "explode": false,
-              "in": "path",
-              "name": "id",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "style": "simple"
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "number"
             },
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "header",
-              "name": "api_key",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "style": "simple"
-            }
-          ],
-          "requestBody": {
+            "style": "form"
+          },
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "query",
+            "name": "projectId",
+            "schema": {
+              "type": "number"
+            },
+            "style": "form"
+          }
+        ],
+        "responses": {
+          "200": {
             "content": {
               "application/json": {
                 "schema": {
                   "properties": {
+                    "pagination": {
+                      "$ref": "#/components/schemas/wallet.Pagination"
+                    },
+                    "wallets": {
+                      "items": {
+                        "properties": {
+                          "address": {
+                            "type": "string"
+                          },
+                          "balance": {
+                            "items": {
+                              "$ref": "#/components/schemas/wallet.Balance"
+                            },
+                            "type": "array"
+                          },
+                          "created_at": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "projectId": {
+                            "type": "number"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "transactions": {
+                            "items": {
+                              "$ref": "#/components/schemas/wallet.Transaction"
+                            },
+                            "type": "array"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "updated_at": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "type",
+                          "status",
+                          "created_at",
+                          "updated_at",
+                          "address",
+                          "projectId",
+                          "balance",
+                          "transactions"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "wallets",
+                    "pagination"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Success response"
+          },
+          "default": {
+            "$ref": "#/components/responses/APIError"
+          }
+        },
+        "summary": "List customer wallets\n"
+      }
+    },
+    "/wallets/status/{id}": {
+      "put": {
+        "operationId": "PUT:wallet.changeStatus",
+        "parameters": [
+          {
+            "allowEmptyValue": true,
+            "explode": false,
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple"
+          },
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "header",
+            "name": "api_key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "projectId": {
+                    "type": "number"
+                  },
+                  "status": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "projectId",
+                  "status"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "address": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
                     "projectId": {
                       "type": "number"
                     },
                     "status": {
                       "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
                     }
                   },
                   "required": [
-                    "projectId",
-                    "status"
+                    "id",
+                    "type",
+                    "status",
+                    "created_at",
+                    "updated_at",
+                    "address",
+                    "projectId"
                   ],
                   "type": "object"
                 }
               }
-            }
+            },
+            "description": "Success response"
           },
-          "responses": {
-            "200": {
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "properties": {
-                      "address": {
-                        "type": "string"
-                      },
-                      "created_at": {
-                        "type": "string"
-                      },
-                      "id": {
-                        "type": "string"
-                      },
-                      "projectId": {
-                        "type": "number"
-                      },
-                      "status": {
-                        "type": "string"
-                      },
-                      "type": {
-                        "type": "string"
-                      },
-                      "updated_at": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "id",
-                      "type",
-                      "status",
-                      "created_at",
-                      "updated_at",
-                      "address",
-                      "projectId"
-                    ],
-                    "type": "object"
-                  }
-                }
-              },
-              "description": "Success response"
-            },
-            "default": {
-              "$ref": "#/components/responses/APIError"
-            }
-          },
-          "summary": "Change wallet status\n"
-        }
-      },
-      "/wallets/system": {
-        "get": {
-          "operationId": "GET:wallet.listSystemWallets",
-          "parameters": [
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "header",
-              "name": "api_key",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "style": "simple"
-            },
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "query",
-              "name": "page",
-              "schema": {
-                "type": "number"
-              },
-              "style": "form"
-            },
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "query",
-              "name": "limit",
-              "schema": {
-                "type": "number"
-              },
-              "style": "form"
-            },
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "query",
-              "name": "projectId",
-              "schema": {
-                "type": "number"
-              },
-              "style": "form"
-            }
-          ],
-          "responses": {
-            "200": {
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "properties": {
-                      "pagination": {
-                        "$ref": "#/components/schemas/wallet.Pagination"
-                      },
-                      "wallets": {
-                        "items": {
-                          "properties": {
-                            "address": {
-                              "type": "string"
-                            },
-                            "balance": {
-                              "items": {
-                                "$ref": "#/components/schemas/wallet.Balance"
-                              },
-                              "type": "array"
-                            },
-                            "created_at": {
-                              "type": "string"
-                            },
-                            "id": {
-                              "type": "string"
-                            },
-                            "projectId": {
-                              "type": "number"
-                            },
-                            "status": {
-                              "type": "string"
-                            },
-                            "transactions": {
-                              "items": {
-                                "$ref": "#/components/schemas/wallet.Transaction"
-                              },
-                              "type": "array"
-                            },
-                            "type": {
-                              "type": "string"
-                            },
-                            "updated_at": {
-                              "type": "string"
-                            }
-                          },
-                          "required": [
-                            "id",
-                            "type",
-                            "status",
-                            "created_at",
-                            "updated_at",
-                            "address",
-                            "projectId",
-                            "balance",
-                            "transactions"
-                          ],
-                          "type": "object"
-                        },
-                        "type": "array"
-                      }
-                    },
-                    "required": [
-                      "wallets",
-                      "pagination"
-                    ],
-                    "type": "object"
-                  }
-                }
-              },
-              "description": "Success response"
-            },
-            "default": {
-              "$ref": "#/components/responses/APIError"
-            }
-          },
-          "summary": "List system wallets\n"
-        }
-      },
-      "/wallets/{id}": {
-        "get": {
-          "operationId": "GET:wallet.getWallet",
-          "parameters": [
-            {
-              "allowEmptyValue": true,
-              "explode": false,
-              "in": "path",
-              "name": "id",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "style": "simple"
-            },
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "header",
-              "name": "api_key",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "style": "simple"
-            },
-            {
-              "allowEmptyValue": true,
-              "explode": true,
-              "in": "query",
-              "name": "projectId",
-              "required": true,
-              "schema": {
-                "type": "number"
-              },
-              "style": "form"
-            }
-          ],
-          "responses": {
-            "200": {
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "properties": {
-                      "address": {
-                        "type": "string"
-                      },
-                      "balance": {
-                        "items": {
-                          "$ref": "#/components/schemas/wallet.Balance"
-                        },
-                        "type": "array"
-                      },
-                      "created_at": {
-                        "type": "string"
-                      },
-                      "id": {
-                        "type": "string"
-                      },
-                      "projectId": {
-                        "type": "number"
-                      },
-                      "status": {
-                        "type": "string"
-                      },
-                      "transactions": {
-                        "items": {
-                          "$ref": "#/components/schemas/wallet.Transaction"
-                        },
-                        "type": "array"
-                      },
-                      "type": {
-                        "type": "string"
-                      },
-                      "updated_at": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "id",
-                      "type",
-                      "status",
-                      "created_at",
-                      "updated_at",
-                      "address",
-                      "projectId",
-                      "balance",
-                      "transactions"
-                    ],
-                    "type": "object"
-                  }
-                }
-              },
-              "description": "Success response"
-            },
-            "default": {
-              "$ref": "#/components/responses/APIError"
-            }
-          },
-          "summary": "Get wallet details\n"
-        }
+          "default": {
+            "$ref": "#/components/responses/APIError"
+          }
+        },
+        "summary": "Change wallet status\n"
       }
     },
-    "servers": [
-      {
-        "description": "Encore local dev environment",
-        "url": "http://localhost:4000"
+    "/wallets/system": {
+      "get": {
+        "operationId": "GET:wallet.listSystemWallets",
+        "parameters": [
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "header",
+            "name": "api_key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple"
+          },
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "number"
+            },
+            "style": "form"
+          },
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "number"
+            },
+            "style": "form"
+          },
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "query",
+            "name": "projectId",
+            "schema": {
+              "type": "number"
+            },
+            "style": "form"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "pagination": {
+                      "$ref": "#/components/schemas/wallet.Pagination"
+                    },
+                    "wallets": {
+                      "items": {
+                        "properties": {
+                          "address": {
+                            "type": "string"
+                          },
+                          "balance": {
+                            "items": {
+                              "$ref": "#/components/schemas/wallet.Balance"
+                            },
+                            "type": "array"
+                          },
+                          "created_at": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "projectId": {
+                            "type": "number"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "transactions": {
+                            "items": {
+                              "$ref": "#/components/schemas/wallet.Transaction"
+                            },
+                            "type": "array"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "updated_at": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "type",
+                          "status",
+                          "created_at",
+                          "updated_at",
+                          "address",
+                          "projectId",
+                          "balance",
+                          "transactions"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "wallets",
+                    "pagination"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Success response"
+          },
+          "default": {
+            "$ref": "#/components/responses/APIError"
+          }
+        },
+        "summary": "List system wallets\n"
       }
-    ]
-  }
+    },
+    "/wallets/{id}": {
+      "get": {
+        "operationId": "GET:wallet.getWallet",
+        "parameters": [
+          {
+            "allowEmptyValue": true,
+            "explode": false,
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple"
+          },
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "header",
+            "name": "api_key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple"
+          },
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "query",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "number"
+            },
+            "style": "form"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "address": {
+                      "type": "string"
+                    },
+                    "balance": {
+                      "items": {
+                        "$ref": "#/components/schemas/wallet.Balance"
+                      },
+                      "type": "array"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "projectId": {
+                      "type": "number"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "transactions": {
+                      "items": {
+                        "$ref": "#/components/schemas/wallet.Transaction"
+                      },
+                      "type": "array"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "type",
+                    "status",
+                    "created_at",
+                    "updated_at",
+                    "address",
+                    "projectId",
+                    "balance",
+                    "transactions"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Success response"
+          },
+          "default": {
+            "$ref": "#/components/responses/APIError"
+          }
+        },
+        "summary": "Get wallet details\n"
+      }
+    },
+    "/webhooks/external": {
+      "post": {
+        "operationId": "POST:webhook.webhook",
+        "parameters": [
+          {
+            "allowEmptyValue": true,
+            "explode": true,
+            "in": "header",
+            "name": "api_key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "flowId": {
+                    "type": "string"
+                  },
+                  "projectId": {
+                    "type": "number"
+                  },
+                  "values": {
+                    "additionalProperties": {
+                      "type": "string"
+                    },
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "flowId",
+                  "projectId",
+                  "values"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Success response"
+          },
+          "default": {
+            "$ref": "#/components/responses/APIError"
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "description": " local dev environment",
+      "url": "http://localhost:4000"
+    },
+    {
+      "description": " local dev environment",
+      "url": "https://staging-ledger-api-vq7i.encr.app"
+    }
+  ]
+}
