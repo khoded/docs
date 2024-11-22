@@ -2021,7 +2021,7 @@
         "summary": "Get wallet details\n"
       }
     },
-    "/webhooks/external": {
+    "/webhook": {
       "post": {
         "operationId": "POST:webhook.webhook",
         "parameters": [
@@ -2097,7 +2097,7 @@
   },
   "servers": [
     {
-      "description": " local dev environment",
+      "description": "Encore local dev environment",
       "url": "http://localhost:4000"
     },
     {
