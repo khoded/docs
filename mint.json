@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Harbor Ledger",
+  "name": "Tokn Ledger",
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
